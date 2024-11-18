@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-125454191-4"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'UA-125454191-4');
+    </script>
+
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Basic -->
+    <meta charset="UTF-8" />
+    <meta name="theme-color" content="#09f" />
+    <meta
+      name="description"
+      content="أكره الواجبات المنزلية، لذا قمت بتصميم هذه الأداة التي تحول النص إلى صورة تشبه الكتابة اليدوية. يمكنك نسخ محتوى النص ولصقه في مربع النص والنقر فوق زر إنشاء الصورة لإنشاء الصورة. تحويل النص إلى كتابة يدوية"
+    />
+    <meta
+      name="keywords"
+      content="تحويل النص إلى خط اليد، تحويل النص إلى خط اليد، تحويل النص إلى خط اليد، تحويل النص إلى صورة، كتابة الواجبات عبر الإنترنت"
+    />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="author" content="Saurabh Daware" />
+    <meta name="copyright" content="Saurabh Daware" />
+    <meta name="robots" content="follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Text to Handwriting" />
+    <meta
+      property="og:url"
+      content="https://saurabhdaware.github.io/text-to-handwriting"
+    />
+    <meta
+      property="og:description"
+      content="أكره الواجبات المنزلية، لذا قمت بتصميم هذه الأداة التي تحول النص إلى صورة تشبه الكتابة اليدوية. يمكنك نسخ محتوى النص ولصقه في مربع النص والنقر فوق زر إنشاء الصورة لإنشاء الصورة. تحويل النص إلى كتابة يدوية"
+    />
+    <meta property="og:site_name" content="Text to Handwriting" />
+
+    <meta
+      property="og:image:secure_url"
+      itemprop="image"
+      content="https://res.cloudinary.com/saurabhdaware/image/upload/v1585413874/saurabh2019/projects/text-to-handwriting.png"
+    />
+    <meta
+      property="og:image"
+      itemprop="image"
+      content="https://res.cloudinary.com/saurabhdaware/image/upload/v1585413874/saurabh2019/projects/text-to-handwriting.png"
+    />
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="337" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@saurabhcodes" />
+
+    <title>Text to Handwriting</title>
+
+    <!-- Favicons -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="images/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="images/favicon-16x16.png"
+    />
+
+    <!-- PWA Migration -->
+    <link rel="manifest" href="./manifest.webmanifest" />
+
+    <!-- Load Fonts -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Homemade+Apple|Roboto|Caveat|Liu+Jian+Mao+Cao&display=swap"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/features.css" />
+  </head>
+
+  <body>
+    <main>
+      <button
+        aria-label="Activate Dark Mode"
+        title="Toggle Dark Mode"
+        aria-pressed="false"
+        onclick="toggleTheme(this)"
+        class="dark-mode-toggle"
+      >
+        <span class="sun">
+          <img
+            alt="sun icon that represents light mode"
+            width="35px"
+            src="images/sun.svg"
+        /></span>
+        <span class="moon"
+          ><img
+            alt="moon icon to represent dark mode "
+            width="25px"
+            src="images/moon.svg"
+        /></span>
+      </button>
+      <h1>النص الى ورقة حقيقية</h1>
+      <section class="generate-image-section">
+        <br /><br />
+        <form id="generate-image-form">
+          <!-- Generate Image Section -->
+          <div class="display-flex output-grid responsive-flex">
+            <div class="flex-1 page-container-super">
+              <div>
+                <h2 style="margin-top: 0px;">مدخل</h2>
+                <label class="block" for="note"></label>
+              </div>
+
+              <div class="flex-1 page-container">
+                <div class="page-a margined lines">
+                  <div contenteditable="true" class="top-margin"></div>
+                  <div class="display-flex left-margin-and-content">
+                    <div contenteditable="true" class="left-margin"></div>
+                    <div class="paper-content" id="note" contenteditable="true">
+                      قم باستبدال هاذا النص في النص الذي تريده، و يمكنك ضغط علامة المسافة في السهم الذي يوجد في الكيبورد لتحويلك الى السطر التالي
+                    </div>
+                  </div>
+                  <div class="overlay"></div>
+                </div>
+                <br />
+              </div>
+
+              <div>
+                <button
+                  id="draw-diagram-button"
+                  type="button"
+                  style="font-size: 0.9rem; margin-top: 5px;"
+                  class="draw-button"
+                >
+                  رسم<small>(النسخة التجريبية)</small>
+                </button>
+              </div>
+            </div>
+
+            <div class="customization-col">
+              <!-- Handwriting Font -->
+              <div style="padding: 5px 0px 5px 0px;">
+                <b>التخصيصات</b> <small>(اختياري)</small>
+                <p style="font-size: 0.8rem;">
+                  <em
+                    >ملاحضة : قد تنعكس بعض التغييرات فقط في الصورة و ليس في المعاينة</em
+                  >
+                </p>
+              </div>
+              <fieldset>
+                <legend>خيارات الكتابة</legend>
+
+                <div class="category-grid">
+                  <div>
+                    <label class="block" for="handwriting-font"
+                      >خط الكتابة</label
+                    >
+                    <select id="handwriting-font">
+                      <option
+                        selected
+                        style="font-family: 'Homemade Apple';"
+                        value="'Homemade Apple', cursive"
+                      >
+                       تفاحة محلية المصنع
+                      </option>
+                      <option value="Hindi_Font">كروتي ديڤ (الهندية)</option>
+                      <option
+                        style="font-family: 'Caveat', cursive; font-size: 13pt;"
+                        value="'Caveat', cursive"
+                      >
+                        تنبيه قضائي
+                      </option>
+                      <option
+                        style="
+                          font-family: 'Liu Jian Mao Cao';
+                          font-size: 13pt;
+                        "
+                        value="'Liu Jian Mao Cao', cursive"
+                      >
+                        ليو جيان ماو كاو
+                      </option>
+                    </select>
+                  </div>
+                  <div class="upload-handwriting-container">
+                    <label class="block" for="font-file"
+                      >قم بتحميل الخط الخاص بخط يدك <small>(النسخة التجريبية)</small>&nbsp;
+                      <a
+                        style="font-size: 1.1rem;"
+                        title="كيفية إضافة خط يدك الخاص"
+                        href="#how-to-add-handwriting"
+                      >
+                        &#9432;
+                      </a>
+                    </label>
+                    <input accept=".ttf, .otf" type="file" id="font-file" />
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- Pen ink color, Font size, Vertical position text, Word Spacing -->
+              <fieldset>
+                <legend>خيارات الصفحة & النص</legend>
+
+                <div class="category-grid">
+                  <div class="postfix-input" data-postfix="pt">
+                    <label for="font-size">حجم الخط</label>
+                    <input
+                      id="font-size"
+                      min="0"
+                      step="0.5"
+                      value="10"
+                      type="number"
+                    />
+                  </div>
+                  <div>
+                    <label class="block" for="ink-color">لون الحبر</label>
+                    <select id="ink-color">
+                      <option default value="#000f55">ازرق حبر</option>
+                      <option value="black">اسود حبر</option>
+                      <option value="#ba3807">احمر حبر</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block" for="page-size">حجم الصفحة</label>
+                    <select id="page-size">
+                      <option default value="a4">عادي &nbsp;</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block" for="page-effects">التأثيرات</label>
+                    <select id="page-effects">
+                      <option default value="shadows">الضلال</option>
+                      <option value="scanner">الماسح الضوئي</option>
+                      <option value="no-effect">بدون تأثيرات</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block" for="resolution">الدقة</label>
+                    <select id="resolution">
+                      <option value="0.8">180 Hd</option>
+                      <option value="1">270 HD</option>
+                      <option selected value="2">360 HD</option>
+                      <option value="3">720 HD</option>
+                      <option value="4">1080 HDR</option>
+                    </select>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>خيارات التباعد</legend>
+
+                <div class="category-grid">
+                  <div class="postfix-input" data-postfix="px">
+                    <label for="top-padding">الوضع العمودي</label>
+                    <input id="top-padding" min="0" value="5" type="number" />
+                  </div>
+                  <div class="postfix-input" data-postfix="px">
+                    <label for="word-spacing">المسافة بين الكلمات</label>
+                    <input
+                      id="word-spacing"
+                      min="0"
+                      max="100"
+                      value="0"
+                      type="number"
+                    />
+                  </div>
+                  <div class="postfix-input" data-postfix="pt">
+                    <label for="letter-spacing">تباعد الحروف</label>
+                    <input
+                      id="letter-spacing"
+                      min="-5"
+                      max="40"
+                      value="0"
+                      type="number"
+                    />
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- Letter spacing, Paper Margin, Paper Lines, Paper Curvature -->
+              <fieldset>
+                <legend>خيارات الخطوط العرضية & الخطوط الطولية الحمراء</legend>
+
+                <div class="category-grid">
+                  <div>
+                    <label for="paper-margin-toggle"
+                      >الخطوط العرضية :
+                      <span aria-label="paper margin status" class="status"
+                        >شغال</span
+                      >
+                    </label>
+                    <label class="switch-toggle outer">
+                      <input
+                        aria-checked="true"
+                        checked
+                        aria-label="Paper Margin Button"
+                        id="paper-margin-toggle"
+                        type="checkbox"
+                      />
+                      <div></div>
+                    </label>
+                  </div>
+
+                  <div>
+                    <label for="paper-line-toggle"
+                      >الخطوط الطولية الحمراء
+                      <span aria-label="paper line status" class="status"
+                        >شغال</span
+                      >
+                    </label>
+                    <label class="switch-toggle outer">
+                      <input
+                        aria-checked="true"
+                        checked
+                        aria-label="Paper Line Button"
+                        id="paper-line-toggle"
+                        type="checkbox"
+                      />
+                      <div></div>
+                    </label>
+                  </div>
+                  <div class="experimental">
+                    <!-- Removed option -->
+                    <div class="upload-paper-container">
+                      <label class="block" for="paper-file"
+                        >تحميل صورة ورقية كخلفية</label
+                      >
+                      <input
+                        accept=".jpg, .jpeg, .png"
+                        type="file"
+                        id="paper-file"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- GENERATE IMAGE BUTTONS -->
+              <hr
+                style="
+                  border: 0.3px solid var(--elevation-background);
+                  width: 80%;
+                "
+              />
+              <div style="text-align: center; padding: 30px 0px;">
+                <button
+                  type="submit"
+                  data-testid="generate-image-button"
+                  class="button generate-image-button"
+                >
+                  إنشاء الصورة
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <!-- OUTPUT -->
+      <section>
+        <h2 id="output-header">الناتج</h2>
+        <div id="output" class="output" style="text-align: center;">
+          اضغط فوق زر "انشاء صورة " لانشاء صورة جديدة.
+        </div>
+        <div style="text-align: center; padding: 30px;">
+          <button class="imp-button" id="download-as-pdf-button">
+            تحميل جميع الصور كـ كتاب PDF 
+          </button>
+          <button class="delete-button" id="delete-all-button">
+            حذف جميع الصور
+          </button>
+        </div>
+      </section>
+
+      <section id="how-to-add-handwriting">
+        <h2>🤓 شرح لإضافة خط يدك الخاص</h2>
+        <div>
+          <ul>
+            <li>
+              لاستخدام خط يدك، يجب عليك إنشاء الخط الخاص بخط يدك.
+            </li>
+            <li>
+             يوجد موقع لانشاء خط يدك
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://www.calligraphr.com/en/"
+                >Calligraphr</a
+              >
+              اضغط على اسم الموقع 
+            </li>
+            <li>
+              
+بمجرد حصولك على ملف .ttf الخاص بخط يدك، قم بتحميله من زر "تحميل خط يدك" في أقسام التخصيصات
+            </li>
+            <li>
+              
+
+
+شكراً لك على قرائتك، لا تنسى متابعتنا على سورس ترايڤ 
+
+<a
+                target="_blank"
+                rel="noop"
+                href="https://t.me/SOURCE_TRIPH"
+                >@SOURCE_TRIPH
+
+</a
+<li>
+	<li>
+مطور البوت هو :- 
+<a
+                target="_blank"
+                rel="noop"
+                href="https://t.me/MAHDI_VE1"
+                >ＭＡＨＤＩ
+
+</a
+<li>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </script>
+  </body>
+</html>
